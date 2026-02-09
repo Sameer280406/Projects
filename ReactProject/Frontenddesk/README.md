@@ -1,70 +1,202 @@
-# Getting Started with Create React App
+# Industrial Equipment Data Analytics Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full‑stack web application for **uploading, analyzing, and visualizing industrial equipment CSV data** using **Django REST Framework + React**. The system computes statistical summaries, visualizes trends, and maintains historical datasets for engineering and academic analysis.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Project Overview
 
-### `npm start`
+This project enables users to:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Upload industrial equipment datasets in CSV format
+- Automatically compute key statistics (averages, counts, distributions)
+- Visualize insights through interactive charts
+- Maintain history of recent uploads
+- Connect a modern React frontend with a robust Django REST backend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The application is designed with **correctness, clarity, and scalability** in mind rather than superficial UI complexity.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🧠 Problem Statement
 
-### `npm run build`
+Industrial datasets are often analyzed manually or using disconnected tools. This project demonstrates how **data ingestion, statistical computation, and visualization** can be unified into a single, clean web-based system suitable for:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Academic labs
+- Research prototypes
+- Engineering analytics dashboards
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🏗️ System Architecture
 
-### `npm run eject`
+```
+CSV Upload (Frontend)
+        ↓
+Django REST API
+        ↓
+Pandas Data Processing
+        ↓
+Statistical Summary
+        ↓
+React Dashboard + Charts
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Both **web and desktop frontends** can consume the same REST API, ensuring reusability.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## ⚙️ Tech Stack
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Backend
 
-## Learn More
+- Django
+- Django REST Framework
+- Pandas
+- SQLite (for lightweight persistence)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Frontend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React
+- Axios
+- Chart.js
+- Modern CSS (Glassmorphism‑inspired UI)
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📊 Features
 
-### Analyzing the Bundle Size
+### 1️⃣ CSV Upload & Parsing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Accepts CSV files containing industrial equipment data
+- Validates presence of required columns
 
-### Making a Progressive Web App
+### 2️⃣ Automatic Statistical Analysis
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Computed using Pandas:
 
-### Advanced Configuration
+- Total equipment count
+- Average Flowrate
+- Average Pressure
+- Average Temperature
+- Equipment type distribution
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 3️⃣ Interactive Dashboard
 
-### Deployment
+- KPI cards for averages
+- Bar & Pie charts for distribution
+- Real‑time UI updates after upload
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 4️⃣ Dataset History
 
-### `npm run build` fails to minify
+- Stores last **5 uploaded datasets**
+- Useful for comparison and experimentation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 5️⃣ API‑Driven Design
+
+- Clean REST endpoints
+- Frontend and backend decoupled
+
+---
+
+## 📁 API Endpoints
+
+| Method | Endpoint        | Description                     |
+| ------ | --------------- | ------------------------------- |
+| POST   | `/api/upload/`  | Upload CSV and generate summary |
+| GET    | `/api/latest/`  | Fetch latest dataset summary    |
+| GET    | `/api/history/` | Fetch last 5 datasets           |
+
+---
+
+## 📄 Sample CSV Format
+
+```csv
+Equipment Name,Type,Flowrate,Pressure,Temperature
+Pump-1,Pump,120,5.2,110
+Compressor-1,Compressor,95,8.4,95
+Valve-1,Valve,60,4.1,105
+```
+
+---
+
+## 🧪 Correctness First Philosophy
+
+Special care has been taken to ensure:
+
+- Accurate statistical calculations
+- Validation of computed averages
+- Immediate correction of mismatched results
+
+This reflects real engineering workflows where **data accuracy is more important than visual polish**.
+
+---
+
+## ▶️ How to Run the Project
+
+### Backend Setup
+
+```bash
+cd backend
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+### Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+---
+
+## 🧠 Design Decisions
+
+- **Pandas** for reliability and mathematical correctness
+- **REST API** for frontend independence
+- **History limit** to avoid database clutter
+- **React** for real‑time visualization updates
+
+---
+
+## 🔮 Future Enhancements
+
+- CSV schema validation
+- Anomaly detection on sensor values
+- Export analytics as PDF reports
+- Real‑time sensor data ingestion
+- Role‑based dashboards
+
+---
+
+## 🎓 Academic & Internship Relevance
+
+This project demonstrates:
+
+- Full‑stack integration
+- Data engineering fundamentals
+- API‑driven architecture
+- Analytical thinking and correctness validation
+
+It is suitable for **research internships, academic evaluation, and engineering demonstrations**.
+
+---
+
+## 👤 Author
+
+**Sameer Jagtap**
+Bachelor of Accounting & Finance (BAF)
+Aspiring Full‑Stack & Data Engineering Enthusiast
+
+---
+
+## 📜 License
+
+This project is developed for academic and learning purposes.
+
+---
+
+> "Engineering is not about writing more code, but about producing correct results."
